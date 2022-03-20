@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.事件修饰符</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    *{
+      margin-top: 20px;
+    }
+    .demo1{
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 
+    Vue中的事件修饰符:
+        1.prevent: 阻止默认事件（常用）;
+        2.stop: 阻止事件冒泡（常用）;
+        3.once: 事件只触发一次（常用）;
+        4.capture: 使用事件的捕获模式;
+        5.self: 只有event.target是当前操作的元素时才触发事件;
+        6.passive: 事件的默认行为立即执行，无需等待事件回调执行完毕;
+
+  -->
+
+  <!-- 创建一个容器 -->
+  <div id="app">
+    <!-- 使用Vue的默认阻止事件的默认行为  @click.prevent -->
+    <a href="https://www.baidu.com" @click.prevent="showMessage">点我提示信息</a>
+
+    <!-- 阻止事件冒泡（常用） -->
+    <div class="demo1" @click="showMessage">
+      <button @click.stop="showMessage">点我提示信息</button>
+    </div>
+
+    <!-- 事件只触发一次 -->
+    <button @click.once="showMessage">点我提示信息</button>
+
+
+  </div>
+  
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        message: "好好学习！"  
+      },
+      methods: {
+        showMessage(event) {
+          // js阻止事件的默认行为，即跳转
+          //event.preventDefault();
+          // js阻止事件冒泡
+          //event.pre
+          alert(this.message)
+        }
+      },
+    })
+  </script>
+</body>
+</html>
